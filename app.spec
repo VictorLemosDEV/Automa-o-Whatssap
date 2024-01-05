@@ -31,7 +31,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['C:\\Users\\victo\\Documents\\projetos\\Automação Whatssap\\sparta.ico'],
+    icon=['C:\\Users\\victo\\Downloads\\sparta.ico'],
 )
 coll = COLLECT(
     exe,
