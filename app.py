@@ -23,3 +23,4 @@ driver = webdriver.Chrome(options=chrome_options,service=s)
 
 # Send WhatsApp Message
 send_message(driver=driver, contacts=contacts, message=message)
+
