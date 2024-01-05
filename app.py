@@ -6,6 +6,13 @@ from utils.file import read_file
 from utils.whatsapp import send_message
 import os
 
+import chromedriver_autoinstaller
+
+
+chromedriver_autoinstaller.install()  # Check if the current version of chromedriver exists
+                                      # and if it doesn't exist, download it automatically,
+                                      # then add chromedriver to path
+
 import utils.gui.gui as Interface
 
 cwd = os.path.abspath(os.getcwd())
