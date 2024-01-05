@@ -23,3 +23,11 @@ def write_file(file, message):
 	f.close()
 
 	return "Success"
+
+def replace_file(file, message):
+	f = open(file, "w",encoding="utf-8")
+	f.write(f"{message}\n")
+
+	f.close()
+
+	return "Success"

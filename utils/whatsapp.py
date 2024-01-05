@@ -43,7 +43,7 @@ def send_message(driver, contacts, message):
 
     driver.get(WHATSAPP_WEB_URL)
 
-    input("Press any key to start...")
+    #input("Press any key to start...")
 
     contacts = [x for x in contacts if x]
 
