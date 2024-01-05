@@ -29,6 +29,9 @@ def relative_to_assets(path: str) -> Path:
 def Change_Message(newMessage):
     replace_file(f"{cwd}/assets/message.txt",newMessage)
 
+def Change_Contacts(newMessage):
+    replace_file(f"{cwd}/assets/contacts.txt",newMessage)
+
 
 def Init(Trigger):
     window = Tk()
@@ -141,6 +144,7 @@ def Init(Trigger):
 
     def UpdateFilesAndDeploy():
         Change_Message(entry_2.get("1.0",tkinter.END))
+        Change_Contacts(entry_1.get("1.0",tkinter.END))
 
         Trigger() # Initializes browser
 
