@@ -1,0 +1,1 @@
+pyinstaller --noconfirm --onedir --console --icon "C:/Users/victo/Documents/projetos/Automação Whatssap/sparta.ico" --add-data "C:/Users/victo/Documents/projetos/Automação Whatssap/assets;assets/" --add-data "C:/Users/victo/Documents/projetos/Automação Whatssap/utils;utils/"  "C:/Users/victo/Documents/projetos/Automação Whatssap/app.py"
