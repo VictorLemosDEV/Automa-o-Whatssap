@@ -19,10 +19,10 @@ cwd = os.path.abspath(os.getcwd())
 
 def Trigger():
     # Get messages
-    message = read_file(f"{cwd}/_internal/assets/message.txt")
+    message = read_file(f"{cwd}/assets/message.txt")
 
     # Get all contacts
-    contacts = read_file(f"{cwd}/_internal/assets/contacts.txt", array=True)
+    contacts = read_file(f"{cwd}/assets/contacts.txt", array=True)
 
     # Initialize Chrome Driver
     s = Service(ChromeDriverManager().install())

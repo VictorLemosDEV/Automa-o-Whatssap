@@ -28,10 +28,14 @@ def relative_to_assets(path: str) -> Path:
 
 
 def Change_Message(newMessage):
+<<<<<<< HEAD
     replace_file(f"{cwd}\_internal\assets\message.txt",newMessage)
+=======
+    replace_file(f"{cwd}/assets/message.txt",newMessage)
+>>>>>>> parent of 1eddfcf (Bug Fixes & First Build)
 
 def Change_Contacts(newMessage):
-    replace_file(f"{cwd}/_internal/assets/contacts.txt",newMessage)
+    replace_file(f"{cwd}/assets/contacts.txt",newMessage)
 
 
 def Init(Trigger):
