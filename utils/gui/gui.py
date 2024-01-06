@@ -7,6 +7,25 @@ from pathlib import Path
 import emoji
 import os
 
+from selenium.webdriver.chrome.options import Options
+
+import psutil
+
+
+
+from selenium import webdriver
+from selenium.common.exceptions import WebDriverException
+
+def is_chrome_open():
+    for process in psutil.process_iter(['pid', 'name']):
+        if 'chromedriver' in process.info['name'].lower():
+            return True
+    return False
+
+# Exemplo de uso
+
+
+
 from threading import Thread
 
 cwd = os.path.abspath(os.getcwd())
@@ -155,12 +174,21 @@ def Init(Trigger):
 
 
     def UpdateFilesAndDeploy():
-        Change_Message(entry_2.get("1.0",tkinter.END))
-        Change_Contacts(entry_1.get("1.0",tkinter.END))
 
+        if is_chrome_open():
+            print("Já está aberto")
+            EditLabel(canvas,StatusLabel,"O Navegador já está abrindo, por favor aguarde...")
+        else:
+            print("Não está aberto")
+            Change_Message(entry_2.get("1.0",tkinter.END))
+            Change_Contacts(entry_1.get("1.0",tkinter.END))
 
-        browserThread = Thread(target=Trigger,args=[canvas],name="browser")
-        browserThread.start()
+            EditLabel(canvas,StatusLabel,"Abrindo Navegador...")
+
+            browserThread = Thread(target=Trigger,args=[canvas],name="browser")
+            browserThread.start()
+
+        
 
     button_image_1 = PhotoImage(
         file=relative_to_assets("button_1.png"))
@@ -185,7 +213,7 @@ def Init(Trigger):
         800.0,
         
         anchor="center",
-        text="Loading...",
+        text="",
         fill="#FFFFFF",
         font=("Inconsolata Regular", 40 * -1)
     )
