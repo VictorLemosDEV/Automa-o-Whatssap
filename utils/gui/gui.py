@@ -7,6 +7,8 @@ from pathlib import Path
 import emoji
 import os
 
+from threading import Thread
+
 cwd = os.path.abspath(os.getcwd())
 
 # from tkinter import *
@@ -18,7 +20,7 @@ from utils.file import read_file
 from utils.file import replace_file
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\victo\Desktop\build\assets\frame0")
+ASSETS_PATH = OUTPUT_PATH / Path(cwd + rf"\_internal\utils\gui\assets\frame0")
 
 
 
@@ -28,15 +30,20 @@ def relative_to_assets(path: str) -> Path:
 
 
 def Change_Message(newMessage):
-    replace_file(f"{cwd}\_internal\assets\message.txt",newMessage)
+    replace_file(cwd + rf"\_internal\assets\message.txt",newMessage)
 
 def Change_Contacts(newMessage):
-    replace_file(f"{cwd}/assets/contacts.txt",newMessage)
+    replace_file(cwd + rf"\_internal\assets\contacts.txt",newMessage)
 
+def EditLabel(canvas,Label,NewText):
+        canvas.itemconfigure(Label,cnf={"text": NewText})    
+
+StatusLabel = None
 
 def Init(Trigger):
+    global StatusLabel
     window = Tk()
-    window.iconbitmap(cwd +  r"\_internal\utils\gui\assets/frame0\sparta.ico")
+    window.iconbitmap(cwd +  rf"\_internal\utils\gui\assets/frame0\sparta.ico")
     window.title("Sparta")
     window.attributes('-fullscreen',True)
     width= window.winfo_screenwidth()   
@@ -56,6 +63,8 @@ def Init(Trigger):
         highlightthickness = 0,
         relief = "ridge"
     )
+
+   
 
     canvas.place(x = 0, y = 0)
     canvas.create_rectangle(
@@ -149,7 +158,9 @@ def Init(Trigger):
         Change_Message(entry_2.get("1.0",tkinter.END))
         Change_Contacts(entry_1.get("1.0",tkinter.END))
 
-        Trigger() # Initializes browser
+
+        browserThread = Thread(target=Trigger,args=[canvas],name="browser")
+        browserThread.start()
 
     button_image_1 = PhotoImage(
         file=relative_to_assets("button_1.png"))
@@ -166,6 +177,21 @@ def Init(Trigger):
         width=797.0,
         height=111.0
     )
+
+    
+    StatusLabel = canvas.create_text(
+        
+        950.0,
+        800.0,
+        
+        anchor="center",
+        text="Loading...",
+        fill="#FFFFFF",
+        font=("Inconsolata Regular", 40 * -1)
+    )
+
+    
+    
 
     image_image_1 = PhotoImage(
         file=relative_to_assets("image_1.png"))
@@ -186,3 +212,4 @@ def Init(Trigger):
     )
     window.resizable(True, True)
     window.mainloop()
+

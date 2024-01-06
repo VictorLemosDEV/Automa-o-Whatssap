@@ -6,6 +6,8 @@ from utils.file import read_file
 from utils.whatsapp import send_message
 import os
 
+from threading import Thread
+
 import chromedriver_autoinstaller
 
 
@@ -17,24 +19,27 @@ import utils.gui.gui as Interface
 
 cwd = os.path.abspath(os.getcwd())
 
-def Trigger():
+def Trigger(canvas):
     # Get messages
-    message = read_file(f"{cwd}/assets/message.txt")
+    message = read_file(cwd+ rf"\_internal\assets\message.txt")
 
     # Get all contacts
-    contacts = read_file(f"{cwd}/assets/contacts.txt", array=True)
+    contacts = read_file(cwd + rf"\_internal\assets\contacts.txt", array=True)
 
     # Initialize Chrome Driver
     s = Service(ChromeDriverManager().install())
     chrome_options = Options()
     chrome_options.add_argument("start-maximized")
+    #chrome_options.add_argument("--headless=new")
     chrome_options.add_argument("--user-data-dir=/tmp/chrome-data/" + "Selenium")
     driver = webdriver.Chrome(options=chrome_options,service=s)
 
     # Send WhatsApp Message
-    send_message(driver=driver, contacts=contacts, message=message)
+    send_message(driver=driver, contacts=contacts, message=message, canvas=canvas)
+
+    
 
 
-
-Interface.Init(Trigger)
+InterfaceThread = Thread(target=Interface.Init, args=[Trigger])
+InterfaceThread.start()
 

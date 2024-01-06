@@ -8,6 +8,8 @@ from selenium.webdriver.common.by import By
 import os
 # from termcolor import colored
 
+from utils.gui.gui import EditLabel, StatusLabel
+
 
 
 
@@ -35,7 +37,7 @@ def generate_link(contact, message, web=False):
         return f"https://wa.me/{contact}&text={message}"
 
 
-def send_message(driver, contacts, message):
+def send_message(driver, contacts, message, canvas):
     print_empty_lines(2)
     print(f"Once your browser opens up, sign in to WhatsApp Web...")
     print("Wait for your chats to be visible so you don't have to sign in again.")
@@ -47,7 +49,7 @@ def send_message(driver, contacts, message):
 
     contacts = [x for x in contacts if x]
 
-    clean_file(f"{cwd}/assets/invalid_contacts.txt")
+    clean_file(cwd + rf"\_internal\assets\invalid_contacts.txt")
 
     for index, contact in enumerate(contacts):
         isPhoneValid = is_phone_valid(contact)
@@ -68,6 +70,7 @@ def send_message(driver, contacts, message):
             continue
 
         print(f"{sending_index}/{total_contacts} => Sending message to {contact}.")
+        EditLabel(canvas,StatusLabel,f"{sending_index}/{total_contacts} => Sending message to {contact}.")
 
         try:
             whatsapp_url = generate_link(contact, message, web=True)
