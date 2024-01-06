@@ -18,7 +18,7 @@ from utils.file import read_file
 from utils.file import replace_file
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\victo\Desktop\build\assets\frame0")
+ASSETS_PATH = OUTPUT_PATH / Path(cwd +  r"\_internal\utils\gui\assets\frame0")
 
 
 
@@ -28,15 +28,15 @@ def relative_to_assets(path: str) -> Path:
 
 
 def Change_Message(newMessage):
-    replace_file(f"{cwd}\_internal\assets\message.txt",newMessage)
+    replace_file(cwd +  r"\_internal\assets\message.txt",newMessage)
 
 def Change_Contacts(newMessage):
-    replace_file(f"{cwd}/assets/contacts.txt",newMessage)
+    replace_file(cwd +  r"\_internal\assets\contacts.txt",newMessage)
 
 
 def Init(Trigger):
     window = Tk()
-    window.iconbitmap(cwd +  r"\_internal\utils\gui\assets/frame0\sparta.ico")
+    window.iconbitmap(cwd +  r"\_internal\utils\gui\assets\frame0\sparta.ico")
     window.title("Sparta")
     window.attributes('-fullscreen',True)
     width= window.winfo_screenwidth()   

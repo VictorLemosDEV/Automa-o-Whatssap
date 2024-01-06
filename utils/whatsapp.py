@@ -47,7 +47,7 @@ def send_message(driver, contacts, message):
 
     contacts = [x for x in contacts if x]
 
-    clean_file(f"{cwd}/assets/invalid_contacts.txt")
+    clean_file(cwd +  r"\_internal\assets\invalid_contacts.txt")
 
     for index, contact in enumerate(contacts):
         isPhoneValid = is_phone_valid(contact)
@@ -85,7 +85,7 @@ def send_message(driver, contacts, message):
 
                     print_empty_lines(1)
 
-                    write_file(f"{cwd}/assets/invalid_contacts.txt", contact)
+                    write_file(cwd +  r"\_internal\assets\invalid_contacts.txt", contact)
 
                     continue
                     # print(f"Failed to send message to this contact: {contact}, retry ({sending_index}/3)")
