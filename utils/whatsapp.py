@@ -123,7 +123,9 @@ def send_message(driver, contacts, message,canvas):
                 try:
                     self.canvas = WebDriverWait(driver, 20).until(lambda x: x.find_element(By.XPATH,'/html/body/div[1]/div/div[2]/div[3]/div[1]/div/div/div[2]/div[2]/canvas'))
 
+                    self.Checker = WebDriverWait(driver, 20).until(lambda x: x.find_element(By.XPATH,'/html/body/div[1]/div/div[2]/div[3]/div[1]/div/div/div[3]/div/span'))
                     
+                    print(self.Checker)
                     
                 except Exception as e:
                     print(f"Something went wrong...")

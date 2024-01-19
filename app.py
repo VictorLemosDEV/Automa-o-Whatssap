@@ -39,7 +39,7 @@ def is_browser_open():
 
 # Configurações Padrões
 DefaultConfiguration = {
-    "Headless": True,
+    "Headless": False   ,
     "Maximized": True,
     "ToleranceTime": 120,
 }
