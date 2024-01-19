@@ -1,3 +1,5 @@
+from tkinter import filedialog
+
 def clean_file(file):
 	file = open(file,"r+")
 
@@ -31,3 +33,8 @@ def replace_file(file, message):
 	f.close()
 
 	return "Success"
+
+
+def OpenFileDialog():
+	file = filedialog.askopenfilename(initialdir="/", title="Escolha um arquivo de contatos",filetypes=(("Arquivos Excel", "*.xlsx"),("Arquivos Excel", ".xls")))
+	return file
